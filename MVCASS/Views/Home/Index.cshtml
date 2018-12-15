@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+<style>
+    fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+    }
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+    }
+    .form-control{
+        width:100%;
+    }
+    .error_class{
+        color:red;
+        font-size:11px;
+    }
+</style>
+
+<div class="container">
+
+  <div class="col-lg-6 col-lg-offset-3">
+    @*<form id="login_form" action="~/MyAccount/Signin" method="post">*@
+@using (Html.BeginForm("Signin", "MyAccount", FormMethod.Post))
+{
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">SYSTEM LOGIN</legend>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="text" id="email" name="email" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Password: </label>
+                        <input type="password" id="password" name="password" required class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="clear:both">
+               
+                <div class="col-lg-12">
+                    <center>
+                        <button type="submit" class="btn btn-primary">LOGIN</button>
+                    </center>
+                    <hr/>
+                    <div class="pull-right">
+                        <a href="#">Forget Password?</a>
+                        <a href="~/MyAccount/Signup" class="btn btn-danger">Signup</a>
+                         @*@Html.ActionLink("SIGNUP", "Signup", "MyAccount");*@
+                    </div>
+                    
+                </div>
+
+            </div>
+
+
+        </fieldset>
+}
+    @*</form>*@
+
+  </div>
+</div>

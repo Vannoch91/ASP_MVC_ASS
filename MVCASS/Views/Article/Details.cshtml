@@ -1,0 +1,47 @@
+﻿@model MVCASS.Models.Articles
+@using MVCASS.Helpers
+@using MVCASS.Models
+@{
+    ViewBag.Title = "Article Details";
+}
+
+
+
+<div>
+    <h4>Show Article Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.author)
+        </dt>
+
+        <dd>
+           
+            @{
+                var authorName = Helper.getAuthorName(ViewBag.id);
+            }
+            @authorName
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

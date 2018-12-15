@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "SignupDB";
+}
+@using MVCASS.Models
+@using MVCASS.Helpers;
+@model MVCASS.Models.User
+<h2>You are successfully Signup...Thanks you for Signup...</h2>
+
+<h3>Passing Data From Controller To View using ViewData</h3>
+@{
+    var data = (User)ViewBag.user;
+    var normalpassword = Helper.MyDecrypt(data.password);
+}
+<h3>Email: @data.email</h3>
+<h3>Password: @data.password</h3>
+<h3>Normal Password: @normalpassword</h3>

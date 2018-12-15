@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Signin";
+}
+
+
+@using MVCASS.Models
+@using MVCASS.Helpers;
+@model MVCASS.Models.User
+<h2>You are successfully Signin....</h2>
+
+@{
+    var data = (User)ViewBag.user;
+}
+<h3>Email: @data.email</h3>
+<h3>Password: @data.password</h3>
+

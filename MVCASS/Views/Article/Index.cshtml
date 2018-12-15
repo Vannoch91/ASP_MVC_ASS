@@ -1,0 +1,102 @@
+﻿@*@model IEnumerable<MVCASS.Models.Articles>*@
+@using MVCASS.Models
+@using MVCASS.Helpers
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<MVCASS.Models.Articles>
+
+
+
+
+@{
+    ViewBag.Title = "Article Management System";
+}
+
+<style>
+    table tr:first-child{
+        background-color:#003399;
+    }
+    table th{
+        text-align:center;
+        text-transform:uppercase;
+        color:white;
+    }
+    table th a{
+        color:white;
+    }
+   
+</style>
+<a href="~/Article/Create" class="btn btn-primary">
+   Add New
+</a>
+
+
+
+<fieldset>
+ 
+    @using (Html.BeginForm())
+    {
+        <div class="row" style="margin-top:10px;margin-bottom:10px">
+            <div class="col-lg-9">
+                <input type="text" class="form-control" placeholder="Search kewyword here..." name="keyword" value="@ViewBag.Keyword" />
+            </div>
+           <div class="col-lg-3">
+               <input type="submit" class="btn btn-primary" value="Search" />
+           </div>
+        </div>
+    }
+</fieldset>
+
+<table class="table table-responsive table-hover table-collapsed table-bordered">
+    <tr>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOn = "title",orderBy = ViewBag.OrderBy,pSortOn = ViewBag.SortOn,keyword = ViewBag.Keyword })
+         </th>
+        <th>
+            @Html.ActionLink("Description", "Index", new { sortOn = "description", orderBy = ViewBag.OrderBy, pSortOn = ViewBag.SortOn, keyword = ViewBag.Keyword })
+        </th>
+        <th>
+            @Html.ActionLink("Author", "Index", new { sortOn = "author", orderBy = ViewBag.OrderBy, pSortOn = ViewBag.SortOn, keyword = ViewBag.Keyword })
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @{
+            var authorName=Helper.getAuthorName(item.author);
+            }
+            @authorName
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+<div class="pagedList">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+   {
+       page,
+       sortOn = ViewBag.SortOn,
+       orderBy = ViewBag.OrderBy,
+       pSortOn =
+    ViewBag.SortOn,
+       keyword = ViewBag.Keyword
+   }),
+PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>
+<div style="clear:both"></div>
